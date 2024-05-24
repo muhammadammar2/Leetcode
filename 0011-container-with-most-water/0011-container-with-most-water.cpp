@@ -1,3 +1,8 @@
+// area = width * height 
+//width = difference of right and left (right - left)
+// height = pointers (height [left] , height [right])
+// keep the track of max area u get so far 
+
 class Solution {
 public:
     int maxArea(vector<int>& height) {
