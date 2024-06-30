@@ -12,7 +12,7 @@
 class Solution {
 public:
     int goodNodes(TreeNode* root) {
-        return dfs (root , root->val);
+      return dfs (root , root->val);
     }
 private:
     int dfs (TreeNode* node , int maxVal) {
@@ -22,7 +22,7 @@ private:
             good = 1;
             maxVal = node->val;
         }
-        
-      return good + dfs (node->left , maxVal) + dfs (node->right , maxVal);
+        return good + dfs (node->left , maxVal) + dfs (node->right , maxVal);
     }
+    
 };
