@@ -1,26 +1,17 @@
-// area = width * height 
-//width = difference of right and left (right - left)
-// height = pointers (height [left] , height [right])
-// keep the track of max area u get so far 
-
+// a = w * h => w (r - l) && h (h[l] , h[r])
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-     int left = 0;
+        int res = 0;
+        int left = 0;
         int right = height.size()-1;
-        int res=0;
         
-        while (left < right ) {
-            int area = (right - left ) * min (height[left] , height [right]);
+        while(left < right) {
+            int area = (right - left) * min (height[left] , height[right]);
+            res = max (res , area);
             
-            res = max (res, area);
-            
-            if ( height[left] < height [right]){
-                left ++;
-            }
-            else {
-                right --;
-            }
+            if (height[left] < height[right]) left ++;
+            else right --;
         }
         return res;
     }
