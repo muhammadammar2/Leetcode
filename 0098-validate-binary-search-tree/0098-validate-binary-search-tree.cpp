@@ -12,13 +12,21 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        return validate (root , LONG_MIN , LONG_MAX);
-    }
-    bool validate (TreeNode* node , long minVal , long maxVal) {
-        if (!node) return true;
+        if (!root) return true;
+        queue <tuple<TreeNode* , long , long>> q;
+        q.push({root , LONG_MIN , LONG_MAX});
         
-        if (node->val <= minVal  || node->val >= maxVal ) return false;
-        
-        return validate (node->left , minVal , node->val) && validate (node->right , node->val , maxVal );
+        while(q.empty() == false) {
+            auto[node , minVal , maxVal] = q.front();
+            q.pop();
+            if (node->val <= minVal || node->val >= maxVal) return false;
+            if (node->left) {
+                q.push({node->left , minVal , node->val});
+            }
+            if (node->right) {
+                q.push({node->right , node->val , maxVal});
+            }
+        }
+        return true;
     }
 };
